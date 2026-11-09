@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DLTS English Language Proficiency Assessment</title>
+<style>
+:root{--navy:#173b5e;--blue:#2877b9;--pale:#edf5fb;--ink:#243447;--muted:#65758b;--line:#d9e2ec;--paper:#fff;--bg:#f3f6fa;--green:#287a55}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Arial,Helvetica,sans-serif}
+header{background:linear-gradient(120deg,#173b5e,#2877b9);color:white;padding:34px 20px}
+.wrap{max-width:1000px;margin:auto;padding:0 18px}
+.brand{font-size:13px;letter-spacing:3px;font-weight:700;opacity:.85}
+h1{font-size:clamp(27px,4vw,40px);line-height:1.12;margin:8px 0}
+.subtitle{letter-spacing:1.5px;font-size:12px;font-weight:700;opacity:.9}
+header p{max-width:700px;margin:12px 0 0;color:#e8f3fc}
+main{max-width:1000px;margin:24px auto;padding:0 18px 50px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:24px;margin:18px 0;box-shadow:0 3px 14px #193b5e0a}
+h2{font-size:23px;color:var(--navy);margin:0 0 14px}
+h3{font-size:18px;color:var(--navy);margin:22px 0 8px}
+h4{margin:14px 0 6px}
+p{margin:8px 0}
+.tag{display:inline-block;background:var(--pale);color:var(--blue);font-size:12px;font-weight:700;padding:5px 10px;border-radius:30px;margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+label{display:block;font-size:13px;font-weight:700;color:#42546a;margin:10px 0 5px}
+input[type=text],input[type=date],select,textarea{width:100%;border:1px solid #cbd6e2;border-radius:8px;padding:11px;font:inherit;background:white;color:var(--ink)}
+textarea{min-height:82px;resize:vertical}
+.question{padding:13px 0;border-bottom:1px solid #edf1f5}
+.question:last-child{border-bottom:0}
+.question p{font-weight:600;margin:0 0 8px}
+.options{display:flex;flex-wrap:wrap;gap:10px 18px}
+.options label{font-weight:400;margin:2px 0;display:flex;align-items:center;gap:7px}
+.options input{accent-color:var(--blue)}
+.passage{background:#f7f9fc;border-left:4px solid var(--blue);padding:16px 18px;border-radius:7px;margin:12px 0}
+.teacher{background:#fff8e8;border:1px solid #f1dca9;border-radius:10px;padding:14px;margin:14px 0}
+.teacher summary{font-weight:700;color:#76520d;cursor:pointer}
+.rubric{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+.rubric th,.rubric td{border:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}
+.rubric th{background:#f1f6fa;color:var(--navy)}
+.score-row{display:grid;grid-template-columns:1fr 110px;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #edf1f5}
+.score-row input{max-width:110px}
+.score-total{display:flex;justify-content:space-between;align-items:center;background:var(--pale);padding:14px 16px;border-radius:10px;font-weight:700;margin-top:12px}
+.score-total strong{font-size:24px;color:var(--navy)}
+button{border:0;border-radius:9px;padding:12px 17px;font-weight:700;font-size:14px;cursor:pointer}
+.primary{background:var(--blue);color:white}
+.secondary{background:#e8eef4;color:var(--navy)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.note{color:var(--muted);font-size:13px}
+.picture-prompt{background:linear-gradient(135deg,#e9f4e9,#edf5fb);border:1px solid #d5e7dc;border-radius:12px;padding:18px;text-align:center;margin:12px 0}
+.image-url-field{margin:12px 0;padding:12px;background:#f7f9fc;border:1px dashed #b8c9d9;border-radius:10px;text-align:left}
+.image-url-field label{margin-top:0}
+.image-preview{display:none;max-width:100%;max-height:340px;object-fit:contain;border-radius:9px;margin:12px auto 0}
+.logo-preview{display:none;max-height:76px;max-width:220px;object-fit:contain;margin:0 0 12px}
+.logo-slot{float:right;max-width:240px;margin-left:20px}
+.image-help{font-size:12px;color:var(--muted);margin:5px 0 0}
+.picture-prompt .scene{font-size:42px;letter-spacing:8px}
+.picture-prompt p{font-size:13px;color:#536779}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.card{padding:18px}.score-row{grid-template-columns:1fr 85px}.rubric{font-size:12px}.rubric th,.rubric td{padding:6px}}
+@media print{body{background:white}.card{box-shadow:none;break-inside:avoid}header{background:#173b5e!important;print-color-adjust:exact}.actions,.no-print{display:none!important}main{max-width:none}.teacher{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="logo-slot"><img id="logoPreview" class="logo-preview" alt="School logo preview"></div>
+    <div class="brand">DLTS</div>
+    <h1>English Language<br>Proficiency Assessment</h1>
+    <div class="subtitle">LISTENING · SPEAKING · READING · WRITING</div>
+    <p>An original school assessment framework inspired by the four language domains used in WIDA MODEL. This is not an official WIDA assessment.</p>
+  </div>
+</header>
+<main>
+  <section class="card">
+    <span class="tag">STUDENT INFORMATION</span>
+    <h2>Assessment Profile</h2>
+    <div class="image-url-field">
+      <label for="logoUrl">School logo image link (optional)</label>
+      <input id="logoUrl" type="text" inputmode="url" placeholder="Paste a direct image URL for your school logo">
+      <p class="image-help">Paste a publicly accessible direct image link (for example, a PNG, JPG or WebP link). The logo will appear in the page header.</p>
+    </div>
+    <div class="grid">
+      <div><label for="student">Student name</label><input id="student" type="text" placeholder="Enter student's full name"></div>
+      <div><label for="grade">Grade / Class</label><input id="grade" type="text" placeholder="e.g. Grade 4"></div>
+      <div><label for="date">Assessment date</label><input id="date" type="date"></div>
+      <div><label for="assessor">Assessor</label><input id="assessor" type="text" placeholder="Teacher's name"></div>
+    </div>
+    <h3>Assessment overview</h3>
+    <table class="rubric">
+      <thead><tr><th>Domain</th><th>Suggested time</th><th>Maximum score</th></tr></thead>
+      <tbody><tr><td>Listening</td><td>15 minutes</td><td>25</td></tr><tr><td>Speaking</td><td>10 minutes</td><td>25</td></tr><tr><td>Reading</td><td>20 minutes</td><td>25</td></tr><tr><td>Writing</td><td>20 minutes</td><td>25</td></tr><tr><th>Total</th><th>65 minutes</th><th>100</th></tr></tbody>
+    </table>
+    <p class="note">Teacher guidance: adjust the level of prompting and task difficulty to the student's age, grade and current English proficiency. Record whether responses were independent or supported.</p>
+  </section>
+
+  <section class="card" id="listening">
+    <span class="tag">DOMAIN 1 · TEACHER READS ALOUD</span>
+    <h2>1. Listening <small>(25 points)</small></h2>
+    <p>Listen carefully. Your teacher will read the passage twice. Answer the questions after listening.</p>
+    <details class="teacher">
+      <summary>Teacher only: Listening passage – A School Garden</summary>
+      <div class="passage">
+        Every Friday afternoon, students in Grade 4 visit the school garden. They work in small groups to take care of different plants. Some students water the vegetables, while others remove weeds and check the soil.<br><br>
+        Last month, the students planted tomatoes, carrots and lettuce. They discovered that plants need sunlight, water, air and healthy soil to grow. Their teacher explained that insects can also help plants by carrying pollen from one flower to another.<br><br>
+        The students are excited because they will soon harvest their vegetables and use them to prepare a healthy salad.
+      </div>
+      <p class="note">Read at a natural pace. Read the complete passage twice. Do not show the passage to the student during the assessment.</p>
+    </details>
+    <h3>Listening questions</h3>
+    <div class="question"><p>1. When do the students visit the school garden?</p><div class="options"><label><input type="radio" name="l1" value="0"> Monday morning</label><label><input type="radio" name="l1" value="1"> Friday afternoon</label><label><input type="radio" name="l1" value="0"> Wednesday afternoon</label></div></div>
+    <div class="question"><p>2. Which vegetables did they plant?</p><div class="options"><label><input type="radio" name="l2" value="1"> Tomatoes, carrots and lettuce</label><label><input type="radio" name="l2" value="0"> Potatoes, onions and corn</label><label><input type="radio" name="l2" value="0"> Cabbage, beans and peas</label></div></div>
+    <div class="question"><p>3. What do some students do in the garden?</p><div class="options"><label><input type="radio" name="l3" value="0"> Paint the flowers</label><label><input type="radio" name="l3" value="0"> Feed the birds</label><label><input type="radio" name="l3" value="1"> Remove weeds</label></div></div>
+    <div class="question"><p>4. What do plants need to grow? Name two things.</p><textarea placeholder="Write your answer..."></textarea></div>
+    <div class="question"><p>5. Why are insects helpful to some plants?</p><textarea placeholder="Write your answer..."></textarea></div>
+    <div class="question"><p>6. What do the students plan to do with their vegetables?</p><textarea placeholder="Write your answer..."></textarea></div>
+    <h3>Listening scoring guide</h3>
+    <table class="rubric"><tr><th>Skill</th><th>Points</th></tr><tr><td>Identifying key information</td><td>8</td></tr><tr><td>Understanding details</td><td>7</td></tr><tr><td>Understanding main ideas</td><td>5</td></tr><tr><td>Understanding explanations and relationships</td><td>5</td></tr></table>
+    <label for="listenScore">Teacher's listening score (0–25)</label><input id="listenScore" type="number" min="0" max="25" value="0" class="domain-score">
+  </section>
+
+  <section class="card" id="speaking">
+    <span class="tag">DOMAIN 2 · INDIVIDUAL INTERVIEW</span>
+    <h2>2. Speaking <small>(25 points)</small></h2>
+    <p>Answer the questions in complete sentences when possible. Your teacher may ask follow-up questions.</p>
+    <h3>Part A: Personal communication (5 points)</h3>
+    <ol><li>Can you introduce yourself?</li><li>What do you enjoy doing after school?</li><li>What is your favourite subject? Why?</li><li>Can you describe your family or a friend?</li><li>What did you do last weekend?</li></ol>
+    <label>Teacher notes – personal communication</label><textarea placeholder="Record examples of the student's spoken language..."></textarea>
+    <h3>Part B: Describe a picture (10 points)</h3>
+    <div class="picture-prompt"><div class="scene" aria-label="Picture prompt illustration">🏫 🌳 🛝 📚 ⚽</div><strong>Imagine a busy school playground.</strong><p>Children are playing, reading, talking and spending time outside.</p><div class="image-url-field"><label for="speakingImageUrl">Speaking Part B – paste a picture link</label><input id="speakingImageUrl" type="text" inputmode="url" placeholder="https://example.com/school-playground.jpg"><p class="image-help">Use a direct, publicly accessible image URL. The picture will replace the illustration above.</p><img id="speakingImagePreview" class="image-preview" alt="Speaking Part B picture prompt"></div></div>
+    <p>Ask the student:</p>
+    <ol><li>What can you see in this picture?</li><li>Where are the children?</li><li>What are the children doing?</li><li>What do you think happened before this picture?</li><li>What might happen next?</li></ol>
+    <label>Teacher notes – picture description</label><textarea placeholder="Record vocabulary, sentence structure and details..."></textarea>
+    <h3>Part C: Explain and give opinions (10 points)</h3>
+    <ol><li>Why is it important to learn English?</li><li>What would happen if people stopped recycling?</li><li>Should students have homework every day? Why or why not?</li><li>What would you do if you found a lost wallet at school?</li></ol>
+    <label>Teacher notes – extended responses</label><textarea placeholder="Record how the student explains ideas and gives reasons..."></textarea>
+    <h3>Speaking rubric</h3>
+    <table class="rubric"><tr><th>Criteria</th><th>Points</th></tr><tr><td>Vocabulary range</td><td>5</td></tr><tr><td>Grammar and sentence structure</td><td>5</td></tr><tr><td>Fluency</td><td>5</td></tr><tr><td>Pronunciation and intelligibility</td><td>5</td></tr><tr><td>Ability to explain and develop ideas</td><td>5</td></tr></table>
+    <label for="speakScore">Teacher's speaking score (0–25)</label><input id="speakScore" type="number" min="0" max="25" value="0" class="domain-score">
+  </section>
+
+  <section class="card" id="reading">
+    <span class="tag">DOMAIN 3 · INDEPENDENT READING</span>
+    <h2>3. Reading <small>(25 points)</small></h2>
+    <p>Read the passage carefully. Then answer the questions using information from the text.</p>
+    <h3>Passage A: Why Do Bees Matter?</h3>
+    <div class="passage">
+      <strong>Why Do Bees Matter?</strong><br><br>
+      Bees are small insects, but they play a very important role in our environment. When a bee visits a flower to collect nectar, pollen sticks to its body. As the bee flies to another flower, some of this pollen is transferred. This process is called pollination.<br><br>
+      Pollination helps many plants produce fruits and seeds. Without bees and other pollinators, some of the foods we eat would become much harder to grow.<br><br>
+      However, bees face several challenges. Pollution, pesticides and the loss of natural habitats can make it difficult for them to survive.<br><br>
+      People can help protect bees by planting flowers, avoiding unnecessary pesticides and creating safe spaces for insects.
+    </div>
+    <h3>Part A: Reading comprehension (10 points)</h3>
+    <div class="question"><p>1. What do bees collect from flowers?</p><textarea placeholder="Write your answer..."></textarea></div>
+    <div class="question"><p>2. What is pollination?</p><textarea placeholder="Write your answer..."></textarea></div>
+    <div class="question"><p>3. Why is pollination important?</p><textarea placeholder="Write your answer..."></textarea></div>
+    <div class="question"><p>4. Name two challenges that bees face.</p><textarea placeholder="Write your answer..."></textarea></div>
+    <div class="question"><p>5. Give one way people can help protect bees.</p><textarea placeholder="Write your answer..."></textarea></div>
+    <h3>Part B: Vocabulary in context (5 points)</h3>
+    <p>Find a word or phrase from the passage that means:</p>
+    <div class="question"><p>1. The natural home of an animal.</p><input type="text" placeholder="Your answer"></div>
+    <div class="question"><p>2. Something that makes something else disappear or become lost.</p><input type="text" placeholder="Your answer"></div>
+    <div class="question"><p>3. The process of moving pollen between flowers.</p><input type="text" placeholder="Your answer"></div>
+    <div class="question"><p>4. A substance used to kill insects.</p><input type="text" placeholder="Your answer"></div>
+    <div class="question"><p>5. A substance that plants produce in flowers and bees collect.</p><input type="text" placeholder="Your answer"></div>
+    <h3>Part C: Reading analysis (10 points)</h3>
+    <div class="question"><p>1. What is the main idea of the passage?</p><textarea></textarea></div>
+    <div class="question"><p>2. Why might fewer bees affect the food people eat?</p><textarea></textarea></div>
+    <div class="question"><p>3. What is the relationship between flowers and bees?</p><textarea></textarea></div>
+    <div class="question"><p>4. Is the passage mainly informative, persuasive or entertaining? Explain.</p><textarea></textarea></div>
+    <div class="question"><p>5. What can you infer about the importance of protecting natural habitats?</p><textarea></textarea></div>
+    <h3>Reading rubric</h3>
+    <table class="rubric"><tr><th>Criteria</th><th>Points</th></tr><tr><td>Reading comprehension</td><td>10</td></tr><tr><td>Vocabulary understanding</td><td>5</td></tr><tr><td>Identifying main ideas</td><td>5</td></tr><tr><td>Making inferences and interpreting information</td><td>5</td></tr></table>
+    <label for="readScore">Teacher's reading score (0–25)</label><input id="readScore" type="number" min="0" max="25" value="0" class="domain-score">
+  </section>
+
+  <section class="card" id="writing">
+    <span class="tag">DOMAIN 4 · INDEPENDENT WRITTEN RESPONSE</span>
+    <h2>4. Writing <small>(25 points)</small></h2>
+    <h3>Part A: Describe and explain (10 points)</h3>
+    <div class="picture-prompt"><div class="scene">🌱 🧑‍🌾 🌼 💧 🌍</div><strong>Taking care of the environment</strong><p>Use the topic to help you develop your paragraph.</p><div class="image-url-field"><label for="writingImageUrl">Writing Part A – paste a picture link</label><input id="writingImageUrl" type="text" inputmode="url" placeholder="https://example.com/environment-picture.jpg"><p class="image-help">Use a direct, publicly accessible image URL. The picture will replace the illustration above.</p><img id="writingImagePreview" class="image-preview" alt="Writing Part A picture prompt"></div></div>
+    <p><strong>Write a paragraph of approximately 60–100 words.</strong></p>
+    <p><em>Topic: Why is it important to take care of the environment?</em></p>
+    <ul><li>Include an opening sentence.</li><li>Give at least three supporting details.</li><li>Include examples.</li><li>Write a concluding sentence.</li></ul>
+    <label for="writingA">Student response – Part A</label><textarea id="writingA" style="min-height:180px" placeholder="Write your paragraph here..."></textarea>
+    <h3>Part B: Opinion writing (15 points)</h3>
+    <p>Choose ONE topic:</p>
+    <div class="options" style="display:block">
+      <label><input type="radio" name="writingTopic" value="Should students be allowed to use tablets in every lesson?"> Should students be allowed to use tablets in every lesson?</label>
+      <label><input type="radio" name="writingTopic" value="Is it better to learn outside or inside the classroom?"> Is it better to learn outside or inside the classroom?</label>
+      <label><input type="radio" name="writingTopic" value="Should every school have a vegetable garden?"> Should every school have a vegetable garden?</label>
+    </div>
+    <p><strong>Write approximately 100–150 words.</strong></p>
+    <ol><li>Introduce your opinion.</li><li>Give at least two reasons.</li><li>Support your reasons with examples.</li><li>Use linking words such as <em>because, however, therefore</em> and <em>for example</em>.</li><li>Write a conclusion.</li></ol>
+    <label for="writingB">Student response – Part B</label><textarea id="writingB" style="min-height:230px" placeholder="Write your opinion paragraph here..."></textarea>
+    <h3>Writing rubric</h3>
+    <table class="rubric"><tr><th>Criteria</th><th>Points</th></tr><tr><td>Content and development of ideas</td><td>5</td></tr><tr><td>Vocabulary</td><td>5</td></tr><tr><td>Grammar and sentence structure</td><td>5</td></tr><tr><td>Organisation and cohesion</td><td>5</td></tr><tr><td>Spelling, punctuation and mechanics</td><td>5</td></tr></table>
+    <label for="writeScore">Teacher's writing score (0–25)</label><input id="writeScore" type="number" min="0" max="25" value="0" class="domain-score">
+  </section>
+
+  <section class="card" id="results">
+    <span class="tag">TEACHER USE · RESULTS AND REPORTING</span>
+    <h2>5. Student Proficiency Profile</h2>
+    <p>Enter a score for each domain. The total score will update automatically.</p>
+    <div class="score-row"><strong>Listening</strong><input id="resultListening" type="number" min="0" max="25" value="0" readonly></div>
+    <div class="score-row"><strong>Speaking</strong><input id="resultSpeaking" type="number" min="0" max="25" value="0" readonly></div>
+    <div class="score-row"><strong>Reading</strong><input id="resultReading" type="number" min="0" max="25" value="0" readonly></div>
+    <div class="score-row"><strong>Writing</strong><input id="resultWriting" type="number" min="0" max="25" value="0" readonly></div>
+    <div class="score-total"><span>Total score</span><strong><span id="totalScore">0</span> / 100</strong></div>
+    <h3>Performance scale</h3>
+    <table class="rubric"><tr><th>Rating</th><th>Performance</th><th>Description</th></tr>
+      <tr><td>1</td><td>Entering</td><td>Understands or produces very limited English; requires substantial support.</td></tr>
+      <tr><td>2</td><td>Emerging</td><td>Understands basic language; uses words and simple phrases.</td></tr>
+      <tr><td>3</td><td>Developing</td><td>Communicates using simple sentences; some errors affect clarity.</td></tr>
+      <tr><td>4</td><td>Expanding</td><td>Communicates with connected sentences and increasingly varied vocabulary.</td></tr>
+      <tr><td>5</td><td>Bridging</td><td>Uses English effectively to explain, discuss and communicate more complex ideas.</td></tr>
+    </table>
+    <h3>DLTS working benchmarks</h3>
+    <table class="rubric"><tr><th>DLTS level</th><th>Suggested student group</th><th>Assessment focus</th></tr>
+      <tr><td>Starter</td><td>Pre-A–G1/2</td><td>Basic vocabulary, phonics, simple instructions and sentences.</td></tr>
+      <tr><td>A1</td><td>G2–G3</td><td>Everyday communication, simple paragraphs and basic explanations.</td></tr>
+      <tr><td>A2</td><td>G4–G5</td><td>Academic vocabulary, connected writing, explanations and inferences.</td></tr>
+      <tr><td>Developing academic English</td><td>G6–G8</td><td>Complex texts, abstract ideas, extended speaking and structured writing.</td></tr>
+    </table>
+    <p class="note">These are DLTS working benchmarks, not official WIDA proficiency-level equivalencies. Do not assign a level from the total score alone; consider performance in each domain, task difficulty and the amount of support required.</p>
+    <h3>Teacher's overall comments</h3>
+    <label for="strengths">Strengths</label><textarea id="strengths" placeholder="What can the student do independently?"></textarea>
+    <label for="targets">Areas for development</label><textarea id="targets" placeholder="Which language skills need further support?"></textarea>
+    <label for="recommendation">Recommended next steps</label><textarea id="recommendation" placeholder="Suggested ESL support, classroom strategies or reassessment..."></textarea>
+  </section>
+
+  <section class="card">
+    <h2>Assessment Notes</h2>
+    <p>This assessment is an original DLTS resource inspired by the four-domain structure of English language proficiency assessment. It is not an official WIDA MODEL test, does not reproduce WIDA test items and should not be used to report official WIDA scores.</p>
+    <div class="actions no-print">
+      <button class="primary" onclick="window.print()">Print / Save as PDF</button>
+      <button class="secondary" onclick="window.location.reload()">Reset assessment</button>
+    </div>
+  </section>
+</main>
+<footer>DLTS · English Language Proficiency Assessment · Internal school assessment resource</footer>
+<script>
+function bindImageUrl(inputId, imageId, logo=false){
+  const input=document.getElementById(inputId);
+  const img=document.getElementById(imageId);
+  const fallback=input.closest('.picture-prompt')?.querySelector('.scene');
+  function update(){
+    const raw=input.value.trim();
+    if(!raw){img.removeAttribute('src');img.style.display='none';if(fallback)fallback.style.display='block';return;}
+    try{const url=new URL(raw);if(!['http:','https:'].includes(url.protocol))throw new Error('Invalid protocol');img.onload=()=>{img.style.display='block';if(fallback)fallback.style.display='none';};img.onerror=()=>{img.style.display='none';if(fallback)fallback.style.display='block';};img.src=url.href;}catch(e){img.removeAttribute('src');img.style.display='none';if(fallback)fallback.style.display='block';}
+  }
+  input.addEventListener('input',update);
+}
+bindImageUrl('logoUrl','logoPreview',true);
+bindImageUrl('speakingImageUrl','speakingImagePreview');
+bindImageUrl('writingImageUrl','writingImagePreview');
+
+const scorePairs=[
+  ['listenScore','resultListening'],
+  ['speakScore','resultSpeaking'],
+  ['readScore','resultReading'],
+  ['writeScore','resultWriting']
+];
+function updateScores(){
+  let total=0;
+  scorePairs.forEach(([source,target])=>{
+    const el=document.getElementById(source);
+    let value=Number(el.value||0);
+    value=Math.max(0,Math.min(25,value));
+    el.value=value;
+    document.getElementById(target).value=value;
+    total+=value;
+  });
+  document.getElementById('totalScore').textContent=total;
+}
+scorePairs.forEach(([source])=>document.getElementById(source).addEventListener('input',updateScores));
+updateScores();
+</script>
+</body>
+</html>
