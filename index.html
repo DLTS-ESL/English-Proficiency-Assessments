@@ -9,7 +9,10 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Arial,Helvetica,sans-serif}
 header{background:linear-gradient(120deg,#173b5e,#2877b9);color:white;padding:34px 20px}
-.wrap{max-width:1000px;margin:auto;padding:0 18px}
+.wrap{max-width:1160px;margin:auto;padding:0 18px}
+.header-layout{display:flex;align-items:center;gap:38px}
+.header-logo{width:190px;height:190px;object-fit:contain;flex:0 0 190px;background:#fff;border-radius:16px;padding:9px}
+.header-copy{min-width:0}
 .brand{font-size:13px;letter-spacing:3px;font-weight:700;opacity:.85}
 h1{font-size:clamp(27px,4vw,40px);line-height:1.12;margin:8px 0}
 .subtitle{letter-spacing:1.5px;font-size:12px;font-weight:700;opacity:.9}
@@ -50,35 +53,31 @@ button{border:0;border-radius:9px;padding:12px 17px;font-weight:700;font-size:14
 .image-url-field{margin:12px 0;padding:12px;background:#f7f9fc;border:1px dashed #b8c9d9;border-radius:10px;text-align:left}
 .image-url-field label{margin-top:0}
 .image-preview{display:none;max-width:100%;max-height:340px;object-fit:contain;border-radius:9px;margin:12px auto 0}
-.logo-preview{display:none;max-height:76px;max-width:220px;object-fit:contain;margin:0 0 12px}
-.logo-slot{float:right;max-width:240px;margin-left:20px}
+.logo-preview{display:none}
 .image-help{font-size:12px;color:var(--muted);margin:5px 0 0}
 .picture-prompt .scene{font-size:42px;letter-spacing:8px}
 .picture-prompt p{font-size:13px;color:#536779}
 footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
-@media(max-width:650px){.grid{grid-template-columns:1fr}.card{padding:18px}.score-row{grid-template-columns:1fr 85px}.rubric{font-size:12px}.rubric th,.rubric td{padding:6px}}
+@media(max-width:650px){.header-layout{flex-direction:column;align-items:flex-start;gap:18px}.header-logo{width:130px;height:130px;flex-basis:130px}.grid{grid-template-columns:1fr}.card{padding:18px}.score-row{grid-template-columns:1fr 85px}.rubric{font-size:12px}.rubric th,.rubric td{padding:6px}}
 @media print{body{background:white}.card{box-shadow:none;break-inside:avoid}header{background:#173b5e!important;print-color-adjust:exact}.actions,.no-print{display:none!important}main{max-width:none}.teacher{break-inside:avoid}}
 </style>
 </head>
 <body>
 <header>
-  <div class="wrap">
-    <div class="logo-slot"><img id="logoPreview" class="logo-preview" alt="School logo preview"></div>
-    <div class="brand">DLTS</div>
-    <h1>English Language<br>Proficiency Assessment</h1>
-    <div class="subtitle">LISTENING · SPEAKING · READING · WRITING</div>
-    <p>An original school assessment framework inspired by the four language domains used in WIDA MODEL. This is not an official WIDA assessment.</p>
+  <div class="wrap header-layout">
+    <img class="header-logo" src="https://i.ibb.co/bRH43Rbw/DLTS-LOGO-Blue-vertical-1024x1024.png" alt="DLTS school logo">
+    <div class="header-copy">
+      <div class="brand">DLTS</div>
+      <h1>English Language<br>Proficiency Assessment</h1>
+      <div class="subtitle">LISTENING · SPEAKING · READING · WRITING</div>
+      <p>An original school assessment framework inspired by the four language domains used in WIDA MODEL. This is not an official WIDA assessment.</p>
+    </div>
   </div>
 </header>
 <main>
   <section class="card">
     <span class="tag">STUDENT INFORMATION</span>
     <h2>Assessment Profile</h2>
-    <div class="image-url-field">
-      <label for="logoUrl">School logo image link (optional)</label>
-      <input id="logoUrl" type="text" inputmode="url" placeholder="Paste a direct image URL for your school logo">
-      <p class="image-help">Paste a publicly accessible direct image link (for example, a PNG, JPG or WebP link). The logo will appear in the page header.</p>
-    </div>
     <div class="grid">
       <div><label for="student">Student name</label><input id="student" type="text" placeholder="Enter student's full name"></div>
       <div><label for="grade">Grade / Class</label><input id="grade" type="text" placeholder="e.g. Grade 4"></div>
@@ -126,7 +125,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
     <ol><li>Can you introduce yourself?</li><li>What do you enjoy doing after school?</li><li>What is your favourite subject? Why?</li><li>Can you describe your family or a friend?</li><li>What did you do last weekend?</li></ol>
     <label>Teacher notes – personal communication</label><textarea placeholder="Record examples of the student's spoken language..."></textarea>
     <h3>Part B: Describe a picture (10 points)</h3>
-    <div class="picture-prompt"><div class="scene" aria-label="Picture prompt illustration">🏫 🌳 🛝 📚 ⚽</div><strong>Imagine a busy school playground.</strong><p>Children are playing, reading, talking and spending time outside.</p><div class="image-url-field"><label for="speakingImageUrl">Speaking Part B – paste a picture link</label><input id="speakingImageUrl" type="text" inputmode="url" placeholder="https://example.com/school-playground.jpg"><p class="image-help">Use a direct, publicly accessible image URL. The picture will replace the illustration above.</p><img id="speakingImagePreview" class="image-preview" alt="Speaking Part B picture prompt"></div></div>
+    <div class="picture-prompt"><strong>Describe the picture.</strong><img class="image-preview" style="display:block" src="https://i.ibb.co/hj1jZwv/Screenshot-2569-11-09-at-12-41-12.png" alt="Speaking Part B picture prompt"></div>
     <p>Ask the student:</p>
     <ol><li>What can you see in this picture?</li><li>Where are the children?</li><li>What are the children doing?</li><li>What do you think happened before this picture?</li><li>What might happen next?</li></ol>
     <label>Teacher notes – picture description</label><textarea placeholder="Record vocabulary, sentence structure and details..."></textarea>
@@ -142,6 +141,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
     <span class="tag">DOMAIN 3 · INDEPENDENT READING</span>
     <h2>3. Reading <small>(25 points)</small></h2>
     <p>Read the passage carefully. Then answer the questions using information from the text.</p>
+    <img class="image-preview" style="display:block" src="https://i.ibb.co/0RbmJHwC/Screenshot-2569-11-09-at-12-41-06.png" alt="Reading reference image">
     <h3>Passage A: Why Do Bees Matter?</h3>
     <div class="passage">
       <strong>Why Do Bees Matter?</strong><br><br>
@@ -178,7 +178,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
     <span class="tag">DOMAIN 4 · INDEPENDENT WRITTEN RESPONSE</span>
     <h2>4. Writing <small>(25 points)</small></h2>
     <h3>Part A: Describe and explain (10 points)</h3>
-    <div class="picture-prompt"><div class="scene">🌱 🧑‍🌾 🌼 💧 🌍</div><strong>Taking care of the environment</strong><p>Use the topic to help you develop your paragraph.</p><div class="image-url-field"><label for="writingImageUrl">Writing Part A – paste a picture link</label><input id="writingImageUrl" type="text" inputmode="url" placeholder="https://example.com/environment-picture.jpg"><p class="image-help">Use a direct, publicly accessible image URL. The picture will replace the illustration above.</p><img id="writingImagePreview" class="image-preview" alt="Writing Part A picture prompt"></div></div>
+    <div class="picture-prompt"><strong>Describe and explain the picture.</strong><p>Use the picture to help you develop your paragraph.</p><img class="image-preview" style="display:block" src="https://i.ibb.co/tpwgHjT5/Screenshot-2569-11-09-at-12-40-58.png" alt="Writing Part A picture prompt"></div>
     <p><strong>Write a paragraph of approximately 60–100 words.</strong></p>
     <p><em>Topic: Why is it important to take care of the environment?</em></p>
     <ul><li>Include an opening sentence.</li><li>Give at least three supporting details.</li><li>Include examples.</li><li>Write a concluding sentence.</li></ul>
@@ -250,10 +250,8 @@ function bindImageUrl(inputId, imageId, logo=false){
     try{const url=new URL(raw);if(!['http:','https:'].includes(url.protocol))throw new Error('Invalid protocol');img.onload=()=>{img.style.display='block';if(fallback)fallback.style.display='none';};img.onerror=()=>{img.style.display='none';if(fallback)fallback.style.display='block';};img.src=url.href;}catch(e){img.removeAttribute('src');img.style.display='none';if(fallback)fallback.style.display='block';}
   }
   input.addEventListener('input',update);
+  update();
 }
-bindImageUrl('logoUrl','logoPreview',true);
-bindImageUrl('speakingImageUrl','speakingImagePreview');
-bindImageUrl('writingImageUrl','writingImagePreview');
 
 const scorePairs=[
   ['listenScore','resultListening'],
